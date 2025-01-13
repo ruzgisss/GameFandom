@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyunlar - GameFandom</title>
+    <link rel="icon" type="image/png" href="../GAMEM.PNG"/>
+    <link rel="shortcut icon" type="image/png" href="../GAMEM.PNG"/>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .games-page {
+            background: linear-gradient(135deg, #1a1d21 0%, #0f1012 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .games-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(87, 73, 169, 0.1) 100%);
+            border-radius: 20px;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+        }
+
+        .games-header h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .games-header p {
+            color: #a8a8b3;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .games-filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 0.8rem 1.5rem;
+            background: rgba(108, 92, 231, 0.1);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-button:hover, .filter-button.active {
+            background: rgba(108, 92, 231, 0.2);
+            border-color: #6c5ce7;
+            transform: translateY(-2px);
+        }
+
+        .filter-button i {
+            font-size: 1.1rem;
+        }
+
+        .search-filter {
+            position: relative;
+            flex-grow: 1;
+            max-width: 400px;
+        }
+
+        .search-filter input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            padding-left: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(108, 92, 231, 0.3);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-filter input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #6c5ce7;
+            outline: none;
+        }
+
+        .search-filter i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c5ce7;
+            font-size: 1.2rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .game-card {
+            position: relative;
+            background: rgba(26, 29, 33, 0.5);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: #6c5ce7;
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.2);
+        }
+
+        .game-image {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.1);
+        }
+
+        .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover .game-overlay {
+            opacity: 1;
+        }
+
+        .game-content {
+            padding: 1.5rem;
+        }
+
+        .game-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(108, 92, 231, 0.2);
+            border-radius: 20px;
+            color: #6c5ce7;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .game-title {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .game-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #a8a8b3;
+            font-size: 0.9rem;
+        }
+
+        .game-description {
+            color: #a8a8b3;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .game-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .play-button {
+            padding: 0.8rem 1.5rem;
+            background: #6c5ce7;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .play-button:hover {
+            background: #5a4bd1;
+            transform: translateY(-2px);
+        }
+
+        .favorite-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(108, 92, 231, 0.1);
+            border: 2px solid transparent;
+            color: #6c5ce7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .favorite-button:hover {
+            background: rgba(108, 92, 231, 0.2);
+            border-color: #6c5ce7;
+        }
+
+        .game-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(108, 92, 231, 0.9);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .game-badge.new {
+            background: rgba(46, 213, 115, 0.9);
+        }
+
+        .game-badge.popular {
+            background: rgba(255, 71, 87, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .games-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-filter {
+                max-width: none;
+            }
+
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="../index.html">Ana Sayfa</a>
+                <a href="games.html" class="active">Oyunlar</a>
+                <a href="community.html">Topluluk</a>
+                <a href="market.html">Market</a>
+                <a href="premium.html">Premium</a>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <input type="text" placeholder="Oyun, anime, hesap veya item ara...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <a href="./premium.html" class="premium-nav-button">
+                    <i class="fas fa-crown"></i>
+                    Premium
+                </a>
+                <div class="balance-display">
+                    <i class="fas fa-wallet"></i>
+                    <span>0.00 TL</span>
+                    <button class="add-balance-btn">
+                        <i class="fas fa-plus-circle"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="games-page">
+        <div class="games-header">
+            <h1>Oyun Dünyasına Hoş Geldiniz</h1>
+            <p>En popüler oyunlar, detaylı incelemeler ve güncel haberler burada. Favori oyunlarınızı keşfedin, topluluğa katılın ve oyun deneyiminizi zenginleştirin.</p>
+        </div>
+
+        <div class="games-filters">
+            <div class="filter-group">
+                <button class="filter-button active">
+                    <i class="fas fa-gamepad"></i>
+                    Tümü
+                </button>
+                <button class="filter-button">
+                    <i class="fas fa-crosshairs"></i>
+                    FPS
+                </button>
+                <button class="filter-button">
+                    <i class="fas fa-chess-rook"></i>
+                    MOBA
+                </button>
+                <button class="filter-button">
+                    <i class="fas fa-dragon"></i>
+                    RPG
+                </button>
+                <button class="filter-button">
+                    <i class="fas fa-running"></i>
+                    Battle Royale
+                </button>
+            </div>
+            <div class="search-filter">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Oyun ara...">
+            </div>
+        </div>
+
+        <div class="games-grid">
+            <!-- Valorant -->
+            <div class="game-card">
+                <div class="game-badge popular">Popüler</div>
+                <div class="game-image">
+                    <img src="data:image/jpeg;base64,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" alt="Valorant">
+                    <div class="game-overlay"></div>
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-crosshairs"></i>
+                        Taktiksel FPS
+                    </span>
+                    <h3 class="game-title">Valorant</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-users"></i>
+                            1M+ Oyuncu
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            4.8/5
+                        </span>
+                    </div>
+                    <p class="game-description">
+                        
+                    </p>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-play"></i>
+                            Şimdi İncele
+                        </button>
+                        <button class="favorite-button">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- League of Legends -->
+            <div class="game-card">
+                <div class="game-badge popular">Popüler</div>
+                <div class="game-image">
+                    <img src="../lol.jpg" alt="League of Legends">
+                    <div class="game-overlay"></div>
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-chess-rook"></i>
+                        MOBA
+                    </span>
+                    <h3 class="game-title">League of Legends</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-users"></i>
+                            2M+ Oyuncu
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            4.7/5
+                        </span>
+                    </div>
+                    <p class="game-description">
+                        
+                    </p>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-play"></i>
+                            Şimdi İncele
+                        </button>
+                        <button class="favorite-button">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CS2 -->
+            <div class="game-card">
+                <div class="game-badge new">Yeni</div>
+                <div class="game-image">
+                    <img src="https://cdn.akamai.steamstatic.com/apps/csgo/images/csgo_react/social/cs2.jpg" alt="CS2">
+                    <div class="game-overlay"></div>
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-crosshairs"></i>
+                        FPS
+                    </span>
+                    <h3 class="game-title">Counter-Strike 2</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-users"></i>
+                            1.5M+ Oyuncu
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            4.9/5
+                        </span>
+                    </div>
+                    <p class="game-description">
+                        .
+                    </p>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-play"></i>
+                            Şimdi İncele
+                        </button>
+                        <button class="favorite-button">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GTA 5 -->
+            <div class="game-card">
+                <div class="game-badge">Klasik</div>
+                <div class="game-image">
+                    <img src="https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg" alt="GTA 5">
+                    <div class="game-overlay"></div>
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-car"></i>
+                        Aksiyon-Macera
+                    </span>
+                    <h3 class="game-title">Grand Theft Auto V</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-users"></i>
+                            800K+ Oyuncu
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            4.8/5
+                        </span>
+                    </div>
+                    <p class="game-description">
+                        
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-play"></i>
+                            Şimdi İncele
+                        </button>
+                        <button class="favorite-button">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Minecraft -->
+            <div class="game-card">
+                <div class="game-badge">Yaratıcı</div>
+                <div class="game-image">
+                    <img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg" alt="Minecraft">
+                    <div class="game-overlay"></div>
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-cube"></i>
+                        Sandbox
+                    </span>
+                    <h3 class="game-title">Minecraft</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-users"></i>
+                            2M+ Oyuncu
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            4.9/5
+                        </span>
+                    </div>
+                    <p class="game-description">
+                        
+                    </p>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-play"></i>
+                            Şimdi İncele
+                        </button>
+                        <button class="favorite-button">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dark Souls -->
+            <div class="game-card">
+                <div class="game-badge">Zorlayıcı</div>
+                <div class="game-image">
+                    <img src="../OFMeAw2KhrdaEZAjW1f3tCIXbogkLpTC.jpeg" alt="Dark Souls">
+                    <div class="game-overlay"></div>
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-dragon"></i>
+                        RPG
+                    </span>
+                    <h3 class="game-title">Dark Souls</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-users"></i>
+                            500K+ Oyuncu
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            4.9/5
+                        </span>
+                    </div>
+                    <p class="game-description">
+                        
+                    </p>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-play"></i>
+                            Şimdi İncele
+                        </button>
+                        <button class="favorite-button">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Witcher 3 -->
+            <div class="game-card">
+                <div class="game-badge">Epik</div>
+                <div class="game-image">
+                    <img src="https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png" alt="The Witcher 3">
+                    <div class="game-overlay"></div>
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-dragon"></i>
+                        RPG
+                    </span>
+                    <h3 class="game-title">The Witcher 3</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-users"></i>
+                            600K+ Oyuncu
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            4.9/5
+                        </span>
+                    </div>
+                    <p class="game-description">
+                        
+                    </p>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-play"></i>
+                            Şimdi İncele
+                        </button>
+                        <button class="favorite-button">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PUBG -->
+            <div class="game-card">
+                <div class="game-badge">Battle Royale</div>
+                <div class="game-image">
+                    <img src="https://wstatic-prod.pubg.com/web/live/static/og/img-og-pubg.jpg" alt="PUBG">
+                    <div class="game-overlay"></div>
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-running"></i>
+                        Battle Royale
+                    </span>
+                    <h3 class="game-title">PUBG: Battlegrounds</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-users"></i>
+                            900K+ Oyuncu
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            4.7/5
+                        </span>
+                    </div>
+                    <p class="game-description">
+                        
+                    </p>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-play"></i>
+                            Şimdi İncele
+                        </button>
+                        <button class="favorite-button">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html> 

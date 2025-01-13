@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Üyelik Ödemesi</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .payment-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 40px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .payment-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #007bff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .payment-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            padding-left: 45px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 18px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .payment-note {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 8px;
+            padding-left: 15px;
+            border-left: 3px solid rgba(0, 123, 255, 0.5);
+        }
+
+        .payment-amount {
+            background: linear-gradient(145deg, rgba(0, 123, 255, 0.1), rgba(0, 255, 136, 0.1));
+            border-radius: 12px;
+            padding: 12px;
+            margin: 20px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        .amount-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .amount-header i {
+            color: #00ff88;
+            font-size: 16px;
+        }
+
+        .amount-header span {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .amount-value {
+            margin: 8px 0;
+        }
+
+        .currency {
+            font-size: 16px;
+            color: #00ff88;
+            margin-right: 2px;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00ff88;
+            text-shadow: 0 0 6px rgba(0, 255, 136, 0.3);
+        }
+
+        .amount-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+        }
+
+        .amount-note i {
+            color: #00ff88;
+            font-size: 11px;
+        }
+
+        .terms-checkbox {
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #007bff;
+        }
+
+        .terms-checkbox label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .premium-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #007bff, #00ff88);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        .premium-button:active {
+            transform: translateY(0);
+        }
+
+        #iban {
+            font-family: monospace;
+            letter-spacing: 1.5px;
+            font-size: 18px;
+            text-align: center;
+            background: rgba(0, 123, 255, 0.1);
+            border: 2px solid rgba(0, 123, 255, 0.2);
+            color: #00ff88;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h2>Premium Üyelik Ödemesi</h2>
+            <p>Banka havalesi ile güvenli ödeme</p>
+        </div>
+
+        <div class="form-group">
+            <label>Ad Soyad</label>
+            <i class="fas fa-user"></i>
+            <input type="text" id="name" placeholder="Adınız ve soyadınız">
+        </div>
+
+        <div class="form-group">
+            <label>E-posta</label>
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" placeholder="E-posta adresiniz">
+        </div>
+
+        <div class="form-group">
+            <label>IBAN NUMARASI</label>
+            <i class="fas fa-university"></i>
+            <input type="text" id="iban" value="TR650082900009491930498608" readonly>
+            <p class="payment-note">* Bu IBAN'a para gönderdikten sonra 20 ile 25 dakika içerisinde hesabınıza tanımlanacaktır.</p>
+        </div>
+
+        <div class="payment-amount">
+            <div class="amount-header">
+                <i class="fas fa-tag"></i>
+                <span>Ödeme Tutarı:</span>
+            </div>
+            <div class="amount-value">
+                <span class="currency">₺</span>
+                <span class="price" id="amount">999.90</span>
+            </div>
+            <div class="amount-note">
+                <i class="fas fa-info-circle"></i>
+                <span>* Yıllık Premium Üyelik ücreti</span>
+            </div>
+        </div>
+
+        <div class="terms-checkbox">
+            <input type="checkbox" id="terms" required>
+            <label for="terms">Üyelik sözleşmesini okudum ve kabul ediyorum</label>
+        </div>
+
+        <button onclick="completePayment()" class="premium-button">
+            <i class="fas fa-check-circle"></i> Ödemeyi Tamamladım
+        </button>
+    </div>
+
+    <script>
+        // URL'den plan tipini al ve tutarı güncelle
+        const urlParams = new URLSearchParams(window.location.search);
+        const planType = urlParams.get('plan');
+        const amountElement = document.getElementById('amount');
+
+        if (planType === 'monthly') {
+            amountElement.textContent = '149.90';
+            amountElement.nextElementSibling.textContent = '* Aylık Premium Üyelik ücreti';
+        } else if (planType === 'pro') {
+            amountElement.textContent = '1499.90';
+            amountElement.nextElementSibling.textContent = '* Pro Premium Üyelik ücreti';
+        }
+
+        function completePayment() {
+            // Form verilerini al
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Form validasyonu
+            if (!name || !email || !terms) {
+                alert('Lütfen tüm alanları doldurun ve sözleşmeyi kabul edin!');
+                return;
+            }
+
+            // Log bilgisini oluştur
+            const logEntry = {
+                name: name,
+                type: planType ? planType.charAt(0).toUpperCase() + planType.slice(1) : 'Yearly',
+                date: new Date().toLocaleString('tr-TR')
+            };
+
+            // Mevcut logları al
+            const logs = JSON.parse(localStorage.getItem('premiumLogs') || '[]');
+            
+            // Yeni logu başa ekle
+            logs.unshift(logEntry);
+            
+            // Logları kaydet
+            localStorage.setItem('premiumLogs', JSON.stringify(logs));
+            
+            // Direkt sayaç sayfasına yönlendir
+            window.location.href = 'payment-countdown.html';
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topluluk - GameFandom</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .community-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .community-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .community-header h1 {
+            color: #fff;
+            font-size: 32px;
+        }
+
+        .new-topic-btn {
+            background: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .new-topic-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .topics-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .topic-filters {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .filter-btn:hover:not(.active) {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-list {
+            padding: 20px;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .topic-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .topic-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #007bff;
+        }
+
+        .topic-content {
+            flex-grow: 1;
+        }
+
+        .topic-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .topic-meta {
+            display: flex;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        .topic-meta i {
+            margin-right: 5px;
+        }
+
+        .topic-stats {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 200px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="nav-left">
+                <a href="../index.html">Ana Sayfa</a>
+                <a href="games.html">Oyunlar</a>
+                <a href="market.html">Market</a>
+                <a href="community.html" class="active">Topluluk</a>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <input type="text" placeholder="Oyun, anime, hesap veya item ara...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <a href="premium.html" class="premium-nav-button">
+                    <i class="fas fa-crown"></i>
+                    Premium
+                </a>
+                <div class="balance-display">
+                    <i class="fas fa-wallet"></i>
+                    <span>0.00 TL</span>
+                    <button class="add-balance-btn">
+                        <i class="fas fa-plus-circle"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="community-container">
+        <div class="community-header">
+            <h1>Topluluk</h1>
+            <button class="new-topic-btn" onclick="openNewTopicModal()">
+                <i class="fas fa-plus"></i>
+                Yeni Konu Oluştur
+            </button>
+        </div>
+
+        <div class="topics-container">
+            <div class="topic-filters">
+                <button class="filter-btn active">Tüm Konular</button>
+                <button class="filter-btn">Popüler</button>
+                <button class="filter-btn">En Yeni</button>
+                <button class="filter-btn">Oyunlar</button>
+                <button class="filter-btn">Sohbet</button>
+            </div>
+
+            <div class="topic-list" id="topicList">
+                <!-- Konular JavaScript ile eklenecek -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Yeni Konu Modal -->
+    <div class="modal" id="newTopicModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeNewTopicModal()">&times;</span>
+            <h2 class="modal-title">Yeni Konu Oluştur</h2>
+            <form id="newTopicForm" onsubmit="createNewTopic(event)">
+                <div class="form-group">
+                    <label>Başlık</label>
+                    <input type="text" id="topicTitle" required placeholder="Konu başlığını girin...">
+                </div>
+                <div class="form-group">
+                    <label>İçerik</label>
+                    <textarea id="topicContent" required placeholder="Konu içeriğini girin..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Konuyu Oluştur</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Örnek konu verileri
+        let topics = JSON.parse(localStorage.getItem('communityTopics')) || [];
+
+        function displayTopics() {
+            const topicList = document.getElementById('topicList');
+            topicList.innerHTML = '';
+
+            topics.forEach(topic => {
+                const topicElement = document.createElement('a');
+                topicElement.href = `topic.html?id=${topic.id}`;
+                topicElement.className = 'topic-item';
+                topicElement.innerHTML = `
+                    <div class="topic-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="topic-content">
+                        <div class="topic-title">${topic.title}</div>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-user"></i>${topic.author}</span>
+                            <span><i class="fas fa-clock"></i>${topic.date}</span>
+                        </div>
+
+                    </div>
+                    <div class="topic-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-comment"></i>
+                            <span>${topic.comments || 0}</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-eye"></i>
+                            <span>${topic.views || 0}</span>
+                        </div>
+                    </div>
+                `;
+                topicList.appendChild(topicElement);
+            });
+        }
+
+        function openNewTopicModal() {
+            document.getElementById('newTopicModal').style.display = 'block';
+        }
+
+        function closeNewTopicModal() {
+            document.getElementById('newTopicModal').style.display = 'none';
+        }
+
+        function createNewTopic(event) {
+            event.preventDefault();
+
+            const title = document.getElementById('topicTitle').value;
+            const content = document.getElementById('topicContent').value;
+
+            const newTopic = {
+                id: Date.now(),
+                title: title,
+                content: content,
+                author: 'Misafir Kullanıcı', // Gerçek uygulamada oturum açmış kullanıcının adı gelecek
+                date: new Date().toLocaleString('tr-TR'),
+                comments: 0,
+                views: 0
+            };
+
+            topics.unshift(newTopic);
+            localStorage.setItem('communityTopics', JSON.stringify(topics));
+
+            closeNewTopicModal();
+            displayTopics();
+            
+            // Formu temizle
+            document.getElementById('newTopicForm').reset();
+        }
+
+        // Sayfa yüklendiğinde konuları göster
+        displayTopics();
+
+        // Modal dışına tıklandığında kapat
+        window.onclick = function(event) {
+            const modal = document.getElementById('newTopicModal');
+            if (event.target == modal) {
+                closeNewTopicModal();
+            }
+        }
+    </script>
+</body>
+</html> 

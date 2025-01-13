@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Üyelik - GameFandom</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="../index.html"><h1>GameFandom</h1></a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Ana Sayfa</a>
+                <a href="#wikiler">Wikiler</a>
+                <a href="#market">Market</a>
+                <a href="#community">Topluluk</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="premium-signup-page">
+        <div class="premium-hero">
+            <div class="premium-hero-content">
+                <h1>Premium Üyelik</h1>
+                <p>GameFandom'un ayrıcalıklı dünyasına hoş geldiniz</p>
+            </div>
+        </div>
+
+        <div class="premium-signup-content">
+            <div class="premium-benefits">
+                <h2>Premium Üyelik Avantajları</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="fas fa-percentage"></i>
+                        <h3>Market İndirimleri</h3>
+                        <p>Tüm hesap ve item alımlarında özel indirimler</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-ad"></i>
+                        <h3>Reklamsız Deneyim</h3>
+                        <p>Kesintisiz ve reklamsız içerik deneyimi</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fab fa-discord"></i>
+                        <h3>Özel Discord Rolü</h3>
+                        <p>Discord sunucumuzda özel rol ve kanallar</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-headset"></i>
+                        <h3>Öncelikli Destek</h3>
+                        <p>7/24 özel müşteri desteği</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-crown"></i>
+                        <h3>Özel Profil Rozeti</h3>
+                        <p>Profilinizde premium üye rozeti</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Beta Erişimi</h3>
+                        <p>Yeni özelliklere erken erişim</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-plans">
+                <h2>Üyelik Planları</h2>
+                <div class="plans-grid">
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Aylık</h3>
+                            <div class="plan-price">
+                                <span class="price">₺99.90</span>
+                                <span class="period">/ay</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> %10 Market İndirimi</li>
+                            <li><i class="fas fa-check"></i> Reklamsız Deneyim</li>
+                            <li><i class="fas fa-check"></i> Özel Discord Rolü</li>
+                        </ul>
+                        <button class="select-plan-button" data-plan="monthly">Planı Seç</button>
+                    </div>
+
+                    <div class="plan-card featured">
+                        <div class="plan-badge">En Popüler</div>
+                        <div class="plan-header">
+                            <h3>Yıllık</h3>
+                            <div class="plan-price">
+                                <span class="price">₺799.90</span>
+                                <span class="period">/yıl</span>
+                            </div>
+                            <div class="plan-savings">₺399 Tasarruf!</div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> %15 Market İndirimi</li>
+                            <li><i class="fas fa-check"></i> Reklamsız Deneyim</li>
+                            <li><i class="fas fa-check"></i> Özel Discord Rolü</li>
+                            <li><i class="fas fa-check"></i> Öncelikli Destek</li>
+                            <li><i class="fas fa-check"></i> Özel Profil Rozeti</li>
+                            <li><i class="fas fa-check"></i> Beta Özelliklere Erişim</li>
+                        </ul>
+                        <button class="select-plan-button featured" data-plan="yearly">Planı Seç</button>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3>Pro</h3>
+                            <div class="plan-price">
+                                <span class="price">₺1499.90</span>
+                                <span class="period">/yıl</span>
+                            </div>
+                        </div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> %25 Market İndirimi</li>
+                            <li><i class="fas fa-check"></i> Reklamsız Deneyim</li>
+                            <li><i class="fas fa-check"></i> VIP Discord Rolü</li>
+                            <li><i class="fas fa-check"></i> 7/24 VIP Destek</li>
+                            <li><i class="fas fa-check"></i> Özel Profil Rozeti</li>
+                            <li><i class="fas fa-check"></i> Beta Özelliklere Erişim</li>
+                            <li><i class="fas fa-check"></i> Aylık ₺250 Market Kredisi</li>
+                        </ul>
+                        <button class="select-plan-button" data-plan="pro">Planı Seç</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="signup-form-container" id="signupForm" style="display: none;">
+                <h2>Premium Üyelik Kaydı</h2>
+                <form class="signup-form">
+                    <div class="form-group">
+                        <label for="fullName">Ad Soyad</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-posta</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="payment-methods">
+                        <h3>Ödeme Yöntemi</h3>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="credit-card">
+                                <span class="option-content">
+                                    <i class="fas fa-credit-card"></i>
+                                    Kredi Kartı
+                                </span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="papara" checked>
+                                <span class="option-content">
+                                    <img src="../images/papara-logo.png" alt="Papara" style="height: 20px;">
+                                    Papara
+                                </span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="bank-transfer">
+                                <span class="option-content">
+                                    <i class="fas fa-university"></i>
+                                    Havale/EFT
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group credit-card-details" id="creditCardForm" style="display: none;">
+                        <label for="cardNumber">Kart Numarası</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                        <div class="card-extra">
+                            <div>
+                                <label for="expiry">Son Kullanma</label>
+                                <input type="text" id="expiry" placeholder="AA/YY">
+                            </div>
+                            <div>
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group papara-details" id="paparaForm">
+                        <label for="paparaNumber">Papara Numarası</label>
+                        <input type="text" id="paparaNumber" placeholder="Papara numaranızı girin" maxlength="10" required>
+                        <p class="papara-info" style="color: #8B8D8F; font-size: 14px; margin-top: 8px;">
+                            * Papara numaranızı girdikten sonra ödeme onayı için Papara uygulamanıza bildirim gelecektir.
+                        </p>
+                    </div>
+                    <div class="form-group bank-details" id="bankForm" style="display: none;">
+                        <div class="bank-info" style="background: #2A2D30; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <p style="margin: 0;"><strong>Banka:</strong> Yapı Kredi</p>
+                            <p style="margin: 5px 0;"><strong>IBAN:</strong> TR12 3456 7890 1234 5678 9012 34</p>
+                            <p style="margin: 0;"><strong>Alıcı:</strong> GameFandom</p>
+                        </div>
+                        <p style="color: #8B8D8F; font-size: 14px;">
+                            * Havale/EFT sonrası dekontunuzu support@gamefandom.com adresine göndermeniz gerekmektedir.
+                        </p>
+                    </div>
+                    <div class="form-group terms">
+                        <label>
+                            <input type="checkbox" required>
+                            <span>Üyelik sözleşmesini okudum ve kabul ediyorum</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-button">Üyeliği Başlat</button>
+                </form>
+            </div>
+        </div>
+
+        <section class="testimonials">
+            <h2>Premium Üyelerimiz Ne Diyor?</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="../images/user1.jpg" alt="Kullanıcı">
+                        <div class="testimonial-info">
+                            <h4>Ahmet Y.</h4>
+                            <span>1 yıldır premium üye</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Market indirimleri sayesinde çok daha uygun fiyatlara alışveriş yapabiliyorum. Premium üyelik kendini amorti ediyor."</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="../images/user2.jpg" alt="Kullanıcı">
+                        <div class="testimonial-info">
+                            <h4>Mehmet K.</h4>
+                            <span>6 aydır premium üye</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"Reklamsız deneyim ve özel Discord rolü için değer. Toplulukta premium üye olmak gerçekten fark yaratıyor."</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="../images/user3.jpg" alt="Kullanıcı">
+                        <div class="testimonial-info">
+                            <h4>Ayşe M.</h4>
+                            <span>3 aydır premium üye</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">"7/24 destek hizmeti gerçekten işe yarıyor. Ne zaman bir sorunum olsa anında çözüme ulaşabiliyorum."</p>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <h2>Sıkça Sorulan Sorular</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Premium üyelik ne zaman başlar?</h3>
+                    <p>Ödemeniz onaylandıktan hemen sonra premium üyeliğiniz aktif olur.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Üyeliğimi iptal edebilir miyim?</h3>
+                    <p>Evet, istediğiniz zaman üyeliğinizi iptal edebilirsiniz. İptal durumunda kalan süre için iade yapılmaz.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Market indirimleri nasıl uygulanır?</h3>
+                    <p>Premium üye olduğunuzda indirimler otomatik olarak uygulanır. Sepetinizde ve ürün fiyatlarında indirimli tutarları görebilirsiniz.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Discord rolümü nasıl alabilirim?</h3>
+                    <p>Premium üye olduktan sonra Discord sunucumuza katılıp, destek ekibimize başvurmanız yeterli.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>GameFandom</h4>
+                <p>Oyun dünyasının en kapsamlı Türkçe platformu</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hızlı Bağlantılar</h4>
+                <ul>
+                    <li><a href="../index.html">Ana Sayfa</a></li>
+                    <li><a href="#wikiler">Wikiler</a></li>
+                    <li><a href="#market">Market</a></li>
+                    <li><a href="#community">Topluluk</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Sosyal Medya</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GameFandom. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Ödeme yöntemi seçimi
+        const paymentMethods = document.querySelectorAll('input[name="payment"]');
+        const creditCardForm = document.getElementById('creditCardForm');
+        const paparaForm = document.getElementById('paparaForm');
+        const bankForm = document.getElementById('bankForm');
+
+        paymentMethods.forEach(method => {
+            method.addEventListener('change', (e) => {
+                // Tüm formları gizle
+                creditCardForm.style.display = 'none';
+                paparaForm.style.display = 'none';
+                bankForm.style.display = 'none';
+
+                // Seçilen ödeme yönteminin formunu göster
+                switch(e.target.value) {
+                    case 'credit-card':
+                        creditCardForm.style.display = 'block';
+                        break;
+                    case 'papara':
+                        paparaForm.style.display = 'block';
+                        break;
+                    case 'bank-transfer':
+                        bankForm.style.display = 'block';
+                        break;
+                }
+            });
+        });
+
+        // Papara numarası kontrolü
+        const paparaInput = document.getElementById('paparaNumber');
+        paparaInput.addEventListener('input', (e) => {
+            // Sadece rakam girilmesine izin ver
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+
+        // Form gönderimi
+        document.querySelector('.signup-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+            
+            if (selectedPayment === 'papara') {
+                const paparaNumber = document.getElementById('paparaNumber').value;
+                if (paparaNumber.length !== 10) {
+                    alert('Lütfen geçerli bir Papara numarası giriniz (10 haneli)');
+                    return;
+                }
+                // Papara ödemesi için işlemler burada yapılacak
+                alert('Papara ödeme isteği gönderildi. Lütfen Papara uygulamanızı kontrol edin.');
+            }
+            // Diğer ödeme yöntemleri için işlemler...
+        });
+    </script>
+</body>
+</html>

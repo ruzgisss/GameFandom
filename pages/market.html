@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market - GameFandom</title>
+    <link rel="icon" type="image/png" href="../GAMEM.PNG"/>
+    <link rel="shortcut icon" type="image/png" href="../GAMEM.PNG"/>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            <span class="highlight">Yeni!</span> Premium üyelik avantajları için <a href="premium.html" style="text-decoration: none;">tıklayın</a>
+            <span class="divider">|</span>
+            <span class="highlight">%20 İndirim!</span> Tüm CS2 itemlerinde büyük fırsat
+        </div>
+    </div>
+
+    <header>
+        <nav style="position: relative; display: flex; align-items: center;">
+            <div class="nav-left">
+                <a href="../index.html">Ana Sayfa</a>
+                <a href="games.html">Oyunlar</a>
+                <a href="community.html">Topluluk</a>
+                <a href="market.html" class="active">Market</a>
+                <a href="premium.html">Premium</a>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <input type="text" placeholder="Oyun, anime, hesap veya item ara...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <a href="premium.html" class="premium-nav-button">
+                    <i class="fas fa-crown"></i>
+                    Premium
+                </a>
+                <div class="balance-display">
+                    <i class="fas fa-wallet"></i>
+                    <span>0.00 TL</span>
+                    <button class="add-balance-btn">
+                        <i class="fas fa-plus-circle"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="market-page">
+        <!-- Hero Section -->
+        <section class="market-hero" style="position: relative; padding: 4rem 2rem; background: linear-gradient(135deg, #1a1d21 0%, #2c3035 100%); overflow: hidden; border-radius: 50px;">
+            <div class="hero-background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background: url('https://cdn2.unrealengine.com/egs-social-holiday-sale-2023-1920x1080-1920x1080-cf188ddef052.jpg') center/cover; border-radius: 50px;">
+            </div>
+            <div style="position: relative; max-width: 1200px; margin: 0 auto; text-align: center;">
+                <h1 style="font-size: 3.5rem; color: #ffffff; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                    Gaming Market
+                </h1>
+                <p style="color: #a8a8b3; font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    En iyi oyun hesapları ve gaming ekipmanları burada! Güvenli alışveriş garantisi ile hemen satın alın.
+                </p>
+                <div class="market-filters" style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
+                    <select id="category-filter" onchange="filterProducts()" style="padding: 1rem 2rem; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); background: rgba(44, 48, 53, 0.9); color: white; cursor: pointer; backdrop-filter: blur(10px); transition: all 0.3s ease; font-size: 1rem; min-width: 200px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <option value="all">Tüm Kategoriler</option>
+                    <option value="game-accounts">Oyun Hesapları</option>
+                    <option value="game-items">Oyun İçi İtemler</option>
+                    <option value="gaming-equipment">Gaming Ekipmanları</option>
+                </select>
+                    <select id="price-filter" onchange="filterProducts()" style="padding: 1rem 2rem; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); background: rgba(44, 48, 53, 0.9); color: white; cursor: pointer; backdrop-filter: blur(10px); transition: all 0.3s ease; font-size: 1rem; min-width: 200px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <option value="default">Sıralama</option>
+                    <option value="low-to-high">Fiyat: Düşükten Yükseğe</option>
+                    <option value="high-to-low">Fiyat: Yüksekten Düşüğe</option>
+                </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Showcase -->
+        <section style="padding: 4rem 2rem; background: #1a1d21; border-radius: 50px;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                    <!-- Valorant Category -->
+                    <div class="category-card valorant">
+                        <img src="https://assets.xboxservices.com/assets/4e/bc/4ebcb533-e184-42f3-833b-9aa47a81f39e.jpg?n=153142244433_Poster-Image-1084_1920x720.jpg" alt="Valorant">
+                        <h3>Valorant Hesapları</h3>
+                        <p>Premium ve doğrulanmış hesaplar</p>
+                    </div>
+                    <!-- CS2 Category -->
+                    <div class="category-card cs2">
+                        <img src="https://cdn.akamai.steamstatic.com/apps/csgo/images/csgo_react/social/cs2.jpg" alt="CS2">
+                        <h3>CS2 Hesapları</h3>
+                        <p>Global Elite ve Supreme hesaplar</p>
+                    </div>
+                    <!-- LoL Category -->
+                    <div class="category-card lol">
+                        <img src="https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S1_2560x1440-872a966297484acd0efe49f34edd5aed" alt="LoL">
+                        <h3>LoL Hesapları</h3>
+                        <p>Challenger ve yüksek ranklar</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .category-card {
+                position: relative;
+                padding: 2rem;
+                border-radius: 30px;
+                overflow: hidden;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                height: 100%;
+                min-height: 200px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            }
+
+            .category-card img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 20px;
+                transition: transform 0.3s ease;
+            }
+
+            .category-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            }
+
+            .category-card:hover img {
+                transform: scale(1.05);
+            }
+
+            .category-card h3 {
+                color: white;
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            }
+
+            .category-card p {
+                color: #a8a8b3;
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+
+            .category-card.valorant {
+                background: linear-gradient(135deg, rgba(255, 70, 85, 0.2) 0%, rgba(26, 29, 33, 0.9) 100%);
+            }
+
+            .category-card.cs2 {
+                background: linear-gradient(135deg, rgba(241, 196, 15, 0.2) 0%, rgba(26, 29, 33, 0.9) 100%);
+            }
+
+            .category-card.lol {
+                background: linear-gradient(135deg, rgba(201, 170, 113, 0.2) 0%, rgba(26, 29, 33, 0.9) 100%);
+            }
+
+            .category-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .category-card:hover::before {
+                opacity: 1;
+            }
+
+            select {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                padding-right: 3rem !important;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 1rem center;
+                background-size: 1.2rem;
+            }
+
+            select:hover {
+                background-color: rgba(255,255,255,0.1);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+                border-color: rgba(255,255,255,0.2);
+            }
+
+            select:focus {
+                outline: none;
+                background-color: rgba(255,255,255,0.15);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+                border-color: rgba(255,255,255,0.3);
+            }
+
+            select option {
+                background-color: #2c3035;
+                color: white;
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .market-hero {
+                position: relative;
+                z-index: 1;
+            }
+
+            .market-hero::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100px;
+                background: linear-gradient(to bottom, transparent, #1a1d21);
+                pointer-events: none;
+            }
+        </style>
+
+        <!-- Products Grid -->
+        <div class="market-grid" style="max-width: 1200px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <style>
+                .game-card {
+                    background: rgba(44, 48, 53, 0.7);
+                    border-radius: 20px;
+                    overflow: hidden;
+                    transition: all 0.3s ease;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255,255,255,0.1);
+                }
+
+                .game-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                }
+
+                .game-badge {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    padding: 0.5rem 1rem;
+                    border-radius: 50px;
+                    font-weight: 500;
+                    z-index: 1;
+                }
+
+                .game-badge.premium { background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%); color: #000; }
+                .game-badge.vip { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); color: white; }
+                .game-badge.elite { background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%); color: #000; }
+                .game-badge.challenger { background: linear-gradient(135deg, #c9aa71 0%, #907a4a 100%); color: white; }
+                .game-badge.verified { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; }
+                .game-badge.supreme { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; }
+
+                .game-image {
+                    position: relative;
+                    height: 200px;
+                    overflow: hidden;
+                }
+
+                .game-content {
+                    padding: 1.5rem;
+                }
+
+                .game-stats {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1rem;
+                    margin: 1rem 0;
+                }
+
+                .stat {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: #a8a8b3;
+                }
+
+                .price-info {
+                    margin: 1rem 0;
+                }
+
+                .original-price {
+                    color: #666;
+                    text-decoration: line-through;
+                    margin-right: 0.5rem;
+                }
+
+                .discounted-price {
+                    color: #4CAF50;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                }
+
+                .play-button {
+                    width: 100%;
+                    background: linear-gradient(135deg, #6c5ce7 0%, #5a48c0 100%);
+                    color: white;
+                    border: none;
+                    padding: 1rem;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                }
+
+                .play-button:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+                }
+
+                @media (max-width: 768px) {
+                    .market-grid {
+                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                        padding: 1rem;
+                    }
+                }
+            </style>
+
+            <!-- Valorant Immortal Hesabı -->
+            <div class="game-card" data-product="valorant-immortal">
+                <div class="game-badge premium">Premium</div>
+                <div class="game-image">
+                    <img src="https://assets.xboxservices.com/assets/4e/bc/4ebcb533-e184-42f3-833b-9aa47a81f39e.jpg?n=153142244433_Poster-Image-1084_1920x720.jpg" alt="Valorant Immortal Hesap" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-gamepad"></i>
+                        Valorant Hesap
+                    </span>
+                    <h3 class="game-title">Valorant Immortal Hesabı</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-trophy"></i>
+                            Rank: Immortal 3
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-user-check"></i>
+                            Tüm Ajanlar Açık
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-palette"></i>
+                            50+ Skin
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-star"></i>
+                            Beta Oyuncusu
+                        </span>
+                    </div>
+                    <div class="price-info">
+                        <span class="original-price">₺2999</span>
+                        <span class="discounted-price">₺2499</span>
+                    </div>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-shopping-cart"></i>
+                            Satın Al
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Valorant Radiant Hesabı -->
+            <div class="game-card" data-product="valorant-radiant">
+                <div class="game-badge vip">VIP</div>
+                <div class="game-image">
+                    <img src="https://assets.xboxservices.com/assets/4e/bc/4ebcb533-e184-42f3-833b-9aa47a81f39e.jpg?n=153142244433_Poster-Image-1084_1920x720.jpg" alt="Valorant Radiant Hesap" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-gamepad"></i>
+                        Valorant Hesap
+                    </span>
+                    <h3 class="game-title">Valorant Radiant Hesabı</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-trophy"></i>
+                            Rank: Radiant
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-user-check"></i>
+                            Tüm Ajanlar
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-palette"></i>
+                            100+ Skin
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-crown"></i>
+                            Nadir Koleksiyon
+                        </span>
+                    </div>
+                    <div class="price-info">
+                        <span class="original-price">₺3999</span>
+                        <span class="discounted-price">₺3499</span>
+                    </div>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-shopping-cart"></i>
+                            Satın Al
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CS2 Global Elite Hesabı -->
+            <div class="game-card" data-product="cs2-global">
+                <div class="game-badge elite">Elite</div>
+                <div class="game-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcooanR2yM5r6AqqwhY9mp6U7t54E_phKCDA&s" alt="CS2 Global Elite Hesap" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-gamepad"></i>
+                        CS2 Hesap
+                    </span>
+                    <h3 class="game-title">CS2 Global Elite Hesabı</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-trophy"></i>
+                            Rank: Global Elite
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-crosshairs"></i>
+                            Prime Hesap
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-palette"></i>
+                            Değerli Skinler
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-medal"></i>
+                            2013'ten Beri
+                        </span>
+                    </div>
+                    <div class="price-info">
+                        <span class="original-price">₺4999</span>
+                        <span class="discounted-price">₺4299</span>
+                    </div>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-shopping-cart"></i>
+                            Satın Al
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- League of Legends Challenger Hesabı -->
+            <div class="game-card" data-product="lol-challenger">
+                <div class="game-badge challenger">Challenger</div>
+                <div class="game-image">
+                    <img src="https://zompir.net/wp-content/uploads/2020/12/LoL-S-Nasil-Alinir.jpg" alt="LoL Challenger Hesap" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-gamepad"></i>
+                        LoL Hesap
+                    </span>
+                    <h3 class="game-title">LoL Challenger Hesabı</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-trophy"></i>
+                            Rank: Challenger
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-user"></i>
+                            Tüm Şampiyonlar
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-palette"></i>
+                            200+ Kostüm
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-gem"></i>
+                            Nadir Skinler
+                        </span>
+                    </div>
+                    <div class="price-info">
+                        <span class="original-price">₺5999</span>
+                        <span class="discounted-price">₺4999</span>
+                    </div>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-shopping-cart"></i>
+                            Satın Al
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Valorant Diamond Hesabı -->
+            <div class="game-card" data-product="valorant-diamond">
+                <div class="game-badge verified">Doğrulanmış</div>
+                <div class="game-image">
+                    <img src="https://assets.xboxservices.com/assets/4e/bc/4ebcb533-e184-42f3-833b-9aa47a81f39e.jpg?n=153142244433_Poster-Image-1084_1920x720.jpg" alt="Valorant Diamond Hesap" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-gamepad"></i>
+                        Valorant Hesap
+                    </span>
+                    <h3 class="game-title">Valorant Diamond Hesabı</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-trophy"></i>
+                            Rank: Diamond 2
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-user-check"></i>
+                            15+ Ajan
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-palette"></i>
+                            25+ Skin
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-crown"></i>
+                            Battlepass Skinleri
+                        </span>
+                    </div>
+                    <div class="price-info">
+                        <span class="original-price">₺1499</span>
+                        <span class="discounted-price">₺1199</span>
+                    </div>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-shopping-cart"></i>
+                            Satın Al
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CS2 Supreme Hesabı -->
+            <div class="game-card" data-product="cs2-supreme">
+                <div class="game-badge supreme">Supreme</div>
+                <div class="game-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcooanR2yM5r6AqqwhY9mp6U7t54E_phKCDA&s" alt="CS2 Supreme Hesap" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="game-content">
+                    <span class="game-category">
+                        <i class="fas fa-gamepad"></i>
+                        CS2 Hesap
+                    </span>
+                    <h3 class="game-title">CS2 Supreme Hesabı</h3>
+                    <div class="game-stats">
+                        <span class="stat">
+                            <i class="fas fa-trophy"></i>
+                            Rank: Supreme
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-crosshairs"></i>
+                            Prime Status
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-palette"></i>
+                            30+ Skin
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-medal"></i>
+                            5+ Yıllık Hesap
+                        </span>
+                    </div>
+                    <div class="price-info">
+                        <span class="original-price">₺2999</span>
+                        <span class="discounted-price">₺2499</span>
+                    </div>
+                    <div class="game-actions">
+                        <button class="play-button">
+                            <i class="fas fa-shopping-cart"></i>
+                            Satın Al
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+

@@ -1,0 +1,57 @@
+<!-- Header Component -->
+<header class="main-header">
+    <nav class="main-nav">
+        <div class="logo">
+            <h1>GameFandom</h1>
+            <div class="auth-buttons">
+                <a href="pages/login.html" class="auth-btn login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Giriş Yap
+                </a>
+                <a href="pages/register.html" class="auth-btn register-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Kayıt Ol
+                </a>
+            </div>
+        </div>
+        <div class="nav-left">
+            <a href="../index.html" id="nav-home">Ana Sayfa</a>
+            <a href="pages/games.html" id="nav-games">Oyunlar</a>
+            <a href="pages/market.html" id="nav-market">Market</a>
+            <a href="pages/community.html" id="nav-community">Topluluk</a>
+        </div>
+        <div class="nav-right">
+            <div class="search-bar">
+                <input type="text" placeholder="Oyun, anime, hesap veya item ara...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <a href="pages/premium.html" class="premium-nav-button">
+                <i class="fas fa-crown"></i>
+                Premium
+            </a>
+            <div class="balance-display">
+                <i class="fas fa-wallet"></i>
+                <span>0.00 TL</span>
+                <button class="add-balance-btn">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+    // Aktif sayfaya göre navigasyon linkini vurgula
+    const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+    const navLinks = {
+        '': 'nav-home',
+        'index': 'nav-home',
+        'games': 'nav-games',
+        'market': 'nav-market',
+        'community': 'nav-community'
+    };
+
+    if (navLinks[currentPage]) {
+        document.getElementById(navLinks[currentPage]).classList.add('active');
+    }
+</script> 

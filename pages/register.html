@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol - GameFandom</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h2>Kayıt Ol</h2>
+                <p>GameFandom'a üye ol</p>
+            </div>
+            
+            <!-- Hata ve başarı mesajları için div'ler -->
+            <div id="error-message" style="display: none;"></div>
+            <div id="success-message" style="display: none;"></div>
+
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="username">Adınız Soyadınız</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-posta</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Şifre</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Şifre Tekrar</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" id="terms" name="terms" required> 
+                        <span>Kullanım koşullarını ve gizlilik politikasını kabul ediyorum</span>
+                    </label>
+                </div>
+                <button type="submit" class="auth-button">Kayıt Ol</button>
+            </form>
+            <div class="auth-footer">
+                <p>Zaten hesabın var mı? <a href="login.html">Giriş yap</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function register() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Form validasyonu
+            if (!username || !email || !password || !confirmPassword) {
+                showError('Lütfen tüm alanları doldurun');
+                return;
+            }
+
+            if (!terms) {
+                showError('Lütfen kullanım koşullarını kabul edin');
+                return;
+            }
+
+            // Email formatı kontrolü
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('Geçerli bir email adresi girin');
+                return;
+            }
+
+            // Kayıt loglarını kontrol et
+            const registeredUsers = JSON.parse(localStorage.getItem('registerLogs') || '[]');
+            
+            // Kullanıcı adı kontrolü
+            if (registeredUsers.some(u => u.username === username)) {
+                showError('Bu kullanıcı adı zaten kullanılıyor');
+                return;
+            }
+
+            // Email kontrolü
+            if (registeredUsers.some(u => u.email === email)) {
+                showError('Bu email adresi zaten kullanılıyor');
+                return;
+            }
+
+            // Şifre kontrolü
+            if (password !== confirmPassword) {
+                showError('Şifreler eşleşmiyor');
+                return;
+            }
+
+            // Yeni kullanıcı kaydı
+            const newUser = {
+                username: username,
+                email: email,
+                password: password,
+                date: new Date().toLocaleString('tr-TR'),
+                success: true
+            };
+
+            // Kayıt loglarını güncelle
+            registeredUsers.unshift(newUser);
+            localStorage.setItem('registerLogs', JSON.stringify(registeredUsers));
+
+            // Başarılı kayıt mesajı
+            showSuccess('Kayıt başarılı! Yönlendiriliyorsunuz...');
+            
+            // Giriş sayfasına yönlendir
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.style.display = 'block';
+            errorDiv.innerHTML = `
+                <div style="background: rgba(220, 53, 69, 0.1); color: #dc3545; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    ${message}
+                </div>
+            `;
+            
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('success-message');
+            successDiv.style.display = 'block';
+            successDiv.innerHTML = `
+                <div style="background: rgba(40, 167, 69, 0.1); color: #28a745; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                    <i class="fas fa-check-circle"></i>
+                    ${message}
+                </div>
+            `;
+        }
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            register();
+        });
+    </script>
+</body>
+</html>
